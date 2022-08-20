@@ -3,11 +3,14 @@
     <div class="col-md-6">
       <div class="row">
         <div class="col">
-          <select class="custom-select">
+          <select id="filter_company_id" name="company_id" class="custom-select">
             <option value="" selected>All Companies</option>
-            <option value="1">Company One</option>
-            <option value="2">Company Two</option>
-            <option value="3">Company Three</option>
+            @if (count($companies))
+            @foreach ($companies as $id => $company )
+            <option value="{{$id}}">{{$company}}</option>
+        @endforeach
+            @endif
+           
           </select>
         </div>
         <div class="col">
