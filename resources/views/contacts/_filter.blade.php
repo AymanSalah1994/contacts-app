@@ -9,7 +9,6 @@
             <option value="{{$id}}" {{ request('company_id') == $id ?  "selected" :"" }} >{{$company}}</option>
         @endforeach
             @endif
-           
           </select>
         </div>
         <div class="col">

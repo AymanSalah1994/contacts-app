@@ -14,10 +14,17 @@
                   </div>
                 </div>
               </div>
+
             <div class="card-body">
               @include('contacts._filter')
               <table class="table table-striped table-hover">
                 <thead>
+                  @if ($success_message = session('message'))
+                   <div class="alert alert-success">
+                     {{ $success_message }}
+                  </div>
+                  @endif
+
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">First Name</th>
@@ -27,7 +34,7 @@
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+
                   @if ($contacts->count())
                       @foreach ($contacts as $index => $contact )
                       <tr>
