@@ -18,7 +18,7 @@ class ContactController extends Controller
                 $companyID = request('company_id');
                 $query->where('company_id', $companyID);
             }
-        })->paginate(3);
+        })->paginate(5);
         return view('contacts.index', compact('contacts', 'companies'));
     }
 
