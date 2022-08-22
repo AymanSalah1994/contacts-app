@@ -24,3 +24,31 @@ document.querySelectorAll('.btn-delete').forEach((button)=>{
         
     })
 })
+
+
+document.getElementById('btn-clear').addEventListener('click',()=>{
+    let search = document.getElementById('search')
+    let select = document.getElementById('filter_company_id')
+
+    search.value = ""
+    select.selectedIndex = 0 
+    window.location.href = window.location.href.split('?')[0]
+
+})
+
+const toggleClearButton = ()=> {
+    // Get Query string 
+    let query = location.search
+    let pattern = /[?&]search=/
+    // The meaning of the Pattern ?
+    let button = document.getElementById('btn-clear')
+
+    if (pattern.test(query)) {
+        button.style.display = "block"
+    }
+    else {
+        button.style.display = "none"
+    }
+
+}
+toggleClearButton()
