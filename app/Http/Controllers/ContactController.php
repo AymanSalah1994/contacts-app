@@ -30,7 +30,7 @@ class ContactController extends Controller
 
     public function show($id)
     {
-        $contact = Contact::find($id);
+        $contact = Contact::findOrFail($id);
         return view('contacts.show', compact('contact'));
         // return $co->first_name ; 
     }
@@ -49,5 +49,35 @@ class ContactController extends Controller
         );
         Contact::create($request->all()) ;
         return redirect()->route('contacts.index')->with('message','Contact Created Successfulyl') ;
+    }
+
+    public function edit($id) {
+        $companies = Company::all() ; 
+        $contact  = Contact::findOrFail($id); 
+        return view('contacts.edit' , compact('contact','companies')); 
+    }
+
+    public function update(Request $request , $id) {
+         $request->validate(
+            [
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email',
+                'address' => 'required',
+                'company_id' => 'required|exists:companies,id'
+            ]
+        );
+        // dd($request->id);
+        $editedContact = Contact::findOrFail($request->id) ; 
+        $editedContact->update($request->all()) ;
+        return redirect()->route('contacts.index')->with('message','Contact Edited Successfullyyy') ;
+    }
+
+    public function destroy($id){
+        // 
+        $contactElement = Contact::findOrFail($id) ; 
+        $contactElement->delete() ; 
+        return redirect()->route('contacts.index')->with('message','Contact Deleted SucceessFully') ; 
+
     }
 }
