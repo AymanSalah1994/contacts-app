@@ -57,11 +57,15 @@
                     <div class="col-md-9 offset-md-3">
                         <a href="#" class="btn btn-info">Edit</a>
 
-                        <a href="" class="btn-delete btn btn-outline-danger">cc</a>
+                        <a href="{{ route('contacts.destroy',$contact->id)}}" class="btn-delete btn btn-outline-danger">Delete</a>
 
                         <a href="{{ route ('contacts.index')}}" class="btn btn-outline-secondary">Cancel</a>
                     </div>
                   </div>
+                  <form id="form-delete" action="" method="post" style="display: none">
+                    @csrf
+                    @method('DELETE')
+                  </form>
                 </div>
               </div>
             </div>
@@ -70,4 +74,8 @@
       </div>
     </div>
   </main>
+@endsection
+
+@section('extrascript')
+<script src="{{ asset('js/show.js')}}"></script>
 @endsection
