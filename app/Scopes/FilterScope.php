@@ -13,7 +13,6 @@ class FilterScope implements Scope
             $companyID = request('company_id');
             $builder->where('company_id', $companyID);
         }
-        
         // return $builder;
     }
 }
