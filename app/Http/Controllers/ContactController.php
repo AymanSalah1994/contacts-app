@@ -11,17 +11,7 @@ class ContactController extends Controller
     public function index()
     {
         $companies = Company::orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
-        $contacts  = Contact::orderBy('id', 'desc')->where(function ($query) {
-            // Here i will check , if Company_id is Checked Then we will append Some Quey to the Builder 
-            // Else No Appending 
-            if (request('company_id')) {
-                $companyID = request('company_id');
-                $query->where('company_id', $companyID);
-            }
-            if($search = request('search')) {
-                $query->where('first_name', 'LIKE' , "%{$search}%" );
-            }
-        })->paginate(5);
+        $contacts  = Contact::latestFirst()->paginate(5);
         return view('contacts.index', compact('contacts', 'companies'));
     }
 
@@ -50,18 +40,20 @@ class ContactController extends Controller
                 'company_id' => 'required|exists:companies,id'
             ]
         );
-        Contact::create($request->all()) ;
-        return redirect()->route('contacts.index')->with('message','Contact Created Successfulyl') ;
+        Contact::create($request->all());
+        return redirect()->route('contacts.index')->with('message', 'Contact Created Successfulyl');
     }
 
-    public function edit($id) {
-        $companies = Company::all() ; 
-        $contact  = Contact::findOrFail($id); 
-        return view('contacts.edit' , compact('contact','companies')); 
+    public function edit($id)
+    {
+        $companies = Company::all();
+        $contact  = Contact::findOrFail($id);
+        return view('contacts.edit', compact('contact', 'companies'));
     }
 
-    public function update(Request $request , $id) {
-         $request->validate(
+    public function update(Request $request, $id)
+    {
+        $request->validate(
             [
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -71,16 +63,16 @@ class ContactController extends Controller
             ]
         );
         // dd($request->id);
-        $editedContact = Contact::findOrFail($request->id) ; 
-        $editedContact->update($request->all()) ;
-        return redirect()->route('contacts.index')->with('message','Contact Edited Successfullyyy') ;
+        $editedContact = Contact::findOrFail($request->id);
+        $editedContact->update($request->all());
+        return redirect()->route('contacts.index')->with('message', 'Contact Edited Successfullyyy');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         // 
-        $contactElement = Contact::findOrFail($id) ; 
-        $contactElement->delete() ; 
-        return redirect()->route('contacts.index')->with('message','Contact Deleted SucceessFully') ; 
-
+        $contactElement = Contact::findOrFail($id);
+        $contactElement->delete();
+        return redirect()->route('contacts.index')->with('message', 'Contact Deleted SucceessFully');
     }
 }
