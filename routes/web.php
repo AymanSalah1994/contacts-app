@@ -3,7 +3,7 @@
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Contact as Contact;
-
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,3 +22,6 @@ Route::get('contacts/{id}/edit', [ContactController::class, 'edit'])->name('cont
 Route::post('contacts/{id}/update', [ContactController::class, 'update'])->name('contacts.update');
 
 Route::delete('contacts/{id}/destroy',[ContactController::class,'destroy'])->name('contacts.destroy');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
