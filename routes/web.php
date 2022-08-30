@@ -21,7 +21,9 @@ Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contacts
 Route::get('contacts/{id}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
 Route::post('contacts/{id}/update', [ContactController::class, 'update'])->name('contacts.update');
 
-Route::delete('contacts/{id}/destroy',[ContactController::class,'destroy'])->name('contacts.destroy');
-Auth::routes();
+Route::delete('contacts/{id}/destroy', [ContactController::class, 'destroy'])->name('contacts.destroy');
+Auth::routes(['verify' => true]);
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::middleware('auth')->group(function () {}) ; 

@@ -8,6 +8,10 @@ use App\Models\Company as Company;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     public function index()
     {
         $companies = Company::orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
