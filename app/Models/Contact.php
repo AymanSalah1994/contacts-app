@@ -15,7 +15,7 @@ class Contact extends Model
     // {
     //     $this->fillable = ['name', 'email', 'address', 'website'];
     // }
-    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'address', 'company_id'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'address', 'company_id' , 'user_id'];
     public function company()
     {
         return $this->belongsTo(Company::class);

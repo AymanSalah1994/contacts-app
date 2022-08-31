@@ -16,6 +16,7 @@ class ContactFactory extends Factory
      */
     public function definition()
     {
+        $theCompany = Company::all()->random() ; 
         return [
             //
             'first_name' => $this->faker->firstName(),
@@ -23,7 +24,9 @@ class ContactFactory extends Factory
             'email' => $this->faker->email(),
             'address' => $this->faker->address(),
             'phone' => $this->faker->phoneNumber(),
-            // 'company_id' => Company::pluck('id')->random(),
+            //  user_id ?????
+            'user_id' => $theCompany->user_id  , 
+            'company_id' => $theCompany->id,
             // We Commented this Because we will generate the Company_id using the RELATIONAL factory !! [ If we could describe it like that ]
             'created_at' => now(),
             'updated_at' => now()

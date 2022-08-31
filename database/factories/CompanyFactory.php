@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,8 @@ class CompanyFactory extends Factory
             'address' => $this->faker->address(),
             'website' => $this->faker->domainName(),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now() , 
+            'user_id' => User::pluck('id')->random()
         ];
     }
 }

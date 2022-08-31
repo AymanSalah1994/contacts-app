@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact as Contact;
 use App\Models\Company as Company;
+use App\Models\User as user;
+
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -14,14 +17,16 @@ class ContactController extends Controller
     }
     public function index()
     {
-        $companies = Company::orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
-        $contacts  = Contact::latestFirst()->paginate(5);
+        $user = auth()->user();
+        $companies = $user->companies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
+        $contacts  = $user->contacts()->latestFirst()->paginate(5);
         return view('contacts.index', compact('contacts', 'companies'));
     }
 
     public function create()
     {
-        $companies = Company::orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
+        $user = Auth::user();
+        $companies = $user->companies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
         return view('contacts.create', compact('companies'));
     }
 
@@ -41,16 +46,19 @@ class ContactController extends Controller
                 'last_name' => 'required',
                 'email' => 'required|email',
                 'address' => 'required',
-                'company_id' => 'required|exists:companies,id'
+                'company_id' => 'required|exists:companies,id' , 
             ]
         );
-        Contact::create($request->all());
+        // dd($request->all()) ;
+        // Contact::create($request->all() + ['user_id' => auth()->id()]);
+        $request->user()->contacts()->create($request->all()) ; 
         return redirect()->route('contacts.index')->with('message', 'Contact Created Successfulyl');
     }
 
     public function edit($id)
     {
-        $companies = Company::all();
+        $user = Auth::user() ;
+        $companies = $user->companies()->get();
         $contact  = Contact::findOrFail($id);
         return view('contacts.edit', compact('contact', 'companies'));
     }
