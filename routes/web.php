@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Contact as Contact;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Settings\AccountController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,3 +28,4 @@ Auth::routes(['verify' => true]);
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::middleware('auth')->group(function () {}) ; 
+Route::get('/settings/account', [AccountController::class, 'index']);
