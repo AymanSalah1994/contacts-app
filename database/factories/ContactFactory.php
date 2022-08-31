@@ -24,6 +24,7 @@ class ContactFactory extends Factory
             'address' => $this->faker->address(),
             'phone' => $this->faker->phoneNumber(),
             // 'company_id' => Company::pluck('id')->random(),
+            // We Commented this Because we will generate the Company_id using the RELATIONAL factory !! [ If we could describe it like that ]
             'created_at' => now(),
             'updated_at' => now()
 

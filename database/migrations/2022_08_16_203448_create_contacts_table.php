@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('company_id');
             $table->timestamps();
 
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
