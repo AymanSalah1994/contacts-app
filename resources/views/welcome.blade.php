@@ -25,7 +25,7 @@
     <div class="links">
         <a href="{{ route ('contacts.index')}}">All Contacts</a><br>
         <a href="{{ route ('contacts.create')}}">Create a Contact</a><br>
-        <a href="{{ route ('contacts.show',['id'=>14])}}">Third Contact</a><br>
+       
     </div>
    </body>
 </html>

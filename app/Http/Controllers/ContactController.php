@@ -47,22 +47,22 @@ class ContactController extends Controller
         $request->user()->contacts()->create($request->all());
         return redirect()->route('contacts.index')->with('message', 'Contact Created Successfulyl');
     }
-    public function show($id)
+    public function show(Contact $contact)
     {
-        $contact = Contact::findOrFail($id);
+        // $contact = Contact::findOrFail($id);
         return view('contacts.show', compact('contact'));
         // return $co->first_name ; 
     }
 
-    public function edit($id)
+    public function edit(Contact $contact)
     {
         $user = Auth::user();
         $companies = $user->companies()->get();
-        $contact  = Contact::findOrFail($id);
+        // $contact  = Contact::findOrFail($id);
         return view('contacts.edit', compact('contact', 'companies'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
         $request->validate(
             [
@@ -74,16 +74,16 @@ class ContactController extends Controller
             ]
         );
         // dd($request->id);
-        $editedContact = Contact::findOrFail($request->id);
-        $editedContact->update($request->all());
+        // $editedContact = Contact::findOrFail($request->id);
+        $contact->update($request->all());
         return redirect()->route('contacts.index')->with('message', 'Contact Edited Successfullyyy');
     }
 
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
         // 
-        $contactElement = Contact::findOrFail($id);
-        $contactElement->delete();
+        // $contactElement = Contact::findOrFail($id);
+        $contact->delete();
         return redirect()->route('contacts.index')->with('message', 'Contact Deleted SucceessFully');
     }
 }
