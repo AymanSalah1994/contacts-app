@@ -30,13 +30,6 @@ class ContactController extends Controller
         return view('contacts.create', compact('companies'));
     }
 
-    public function show($id)
-    {
-        $contact = Contact::findOrFail($id);
-        return view('contacts.show', compact('contact'));
-        // return $co->first_name ; 
-    }
-
     public function store(Request $request)
     {
         // dd(request('last_name'));
@@ -46,18 +39,24 @@ class ContactController extends Controller
                 'last_name' => 'required',
                 'email' => 'required|email',
                 'address' => 'required',
-                'company_id' => 'required|exists:companies,id' , 
+                'company_id' => 'required|exists:companies,id',
             ]
         );
         // dd($request->all()) ;
         // Contact::create($request->all() + ['user_id' => auth()->id()]);
-        $request->user()->contacts()->create($request->all()) ; 
+        $request->user()->contacts()->create($request->all());
         return redirect()->route('contacts.index')->with('message', 'Contact Created Successfulyl');
+    }
+    public function show($id)
+    {
+        $contact = Contact::findOrFail($id);
+        return view('contacts.show', compact('contact'));
+        // return $co->first_name ; 
     }
 
     public function edit($id)
     {
-        $user = Auth::user() ;
+        $user = Auth::user();
         $companies = $user->companies()->get();
         $contact  = Contact::findOrFail($id);
         return view('contacts.edit', compact('contact', 'companies'));
