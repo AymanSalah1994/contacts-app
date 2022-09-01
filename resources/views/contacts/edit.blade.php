@@ -12,6 +12,8 @@
             <div class="card-body">
               <form action="{{ route('contacts.update',$contact->id)}}" method="post">
                 @csrf
+                {{--  IF you Use the Route::resource() YOU MUST USE PUT DIRECTIVE --}}
+                @method('PUT')
                 @include('contacts._editForm')
               </form>
             </div>

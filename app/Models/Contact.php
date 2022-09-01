@@ -47,4 +47,8 @@ class Contact extends Model
     // {
     //     return 'first_name';
     // }
+
+    public static function userContacts() {
+        return self::where('user_id' , auth()->id()) ; 
+    }
 }
