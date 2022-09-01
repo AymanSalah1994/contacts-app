@@ -25,7 +25,7 @@ class CompanyController extends Controller
         // $companies = auth()->user()->companies()->latest()->paginate(10) ; 
         // The Above Line is True But it Gives a Red Line Error !!! 
         $user = User::findOrfail(auth()->id());
-        $companies = $user->companies()->latest()->paginate(10);
+        $companies = $user->companies()->latest()->seachCompanies()->paginate(10);
         return view('companies.index', compact('companies'));
     }
 
@@ -37,6 +37,7 @@ class CompanyController extends Controller
     public function create()
     {
         //
+        return view('companies.create');
     }
 
     /**
@@ -99,7 +100,7 @@ class CompanyController extends Controller
     {
         //
         $company->delete();
-        return redirect()->route('contacts.index')->with('message', 'Contact Deleted SucceessFully');
+        return redirect()->route('companies.index')->with('message', 'Company Deleted SuccessFully');
         // return back()->with('message', 'Contact Deleted SucceessFully');
     }
 }

@@ -23,4 +23,13 @@ class Company extends Model
     public static function userCompanies() {
         return self::where('user_id' ,auth()->id()) ; 
     }
+
+    public function scopeSeachCompanies($query) {
+        if ($search = request('search')) {
+            $query->where('name', 'LIKE', "%{$search}%");
+            $query->orWhere('address', 'LIKE', "%{$search}%");
+            $query->orWhere('email', 'LIKE', "%{$search}%");
+            $query->orWhere('website', 'LIKE', "%{$search}%") ; 
+        }
+    }
 }
