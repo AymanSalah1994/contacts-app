@@ -17,11 +17,13 @@ Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('con
 Route::get('contacts/{contact}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
 Route::post('contacts/{contact}/update', [ContactController::class, 'update'])->name('contacts.update');
 Route::delete('contacts/{contact}/destroy', [ContactController::class, 'destroy'])->name('contacts.destroy');
+
+
+
+
+
+
 Auth::routes(['verify' => true]);
-
-
-
-
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::middleware('auth')->group(function () {}) ; 
