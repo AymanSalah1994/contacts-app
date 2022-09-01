@@ -9,13 +9,11 @@
 
           @error('first_name')
           <div class="invalid-feedback">
-            Please choose a username.
+            {{ $message }}
           </div>
           @enderror
 
-          @error('first_name')
-              This is From Me Ayman in Case there is an Error 
-          @enderror
+          
         </div>
       </div>
 
@@ -27,7 +25,7 @@
           @enderror" value="{{ old('last_name') }}">
           @error('last_name')
           <div class="invalid-feedback">
-            Please choose a Sur Name.
+            {{ $message }}
           </div>
           @enderror
         </div>
@@ -41,7 +39,7 @@
           @enderror" value="{{ old('email') }}">
           @error('email')
           <div class="invalid-feedback">
-            Please Write a Valid Email
+            {{ $message }}
           </div>
           @enderror
         </div>
@@ -55,7 +53,7 @@
           @enderror" value="{{ old('phone') }}">
           @error('phone')
           <div class="invalid-feedback">
-            Please Enter Phone Number 
+            {{ $message }}
           </div>
           @enderror
         </div>

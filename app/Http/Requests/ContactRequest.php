@@ -16,11 +16,6 @@ class ContactRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
@@ -31,5 +26,24 @@ class ContactRequest extends FormRequest
             'address' => 'required',
             'company_id' => 'required|exists:companies,id'
         ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'company_id' => 'Company' , 
+            // instead of the Company id is Required , the error Message will be 
+            // the Company Field is Required 
+            // 'email' => 'email address'
+        ] ; 
+    }
+
+    public function messages()
+    {
+        return [
+            // field.validation_Rule => 'msg ' 
+            'email.email' =>'The Email you Entered is NOT valid!' , 
+            '*.required' => 'This :attribute Filed Can Not be Empty !'
+        ] ; 
     }
 }
