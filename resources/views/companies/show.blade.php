@@ -13,14 +13,14 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group row">
-                    <label for="first_name" class="col-md-3 col-form-label">Company Name</label>
+                    <label for="" class="col-md-3 col-form-label">Company Name</label>
                     <div class="col-md-9">
                       <p class="form-control-plaintext text-muted">{{$company->name}}</p>
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label for="last_name" class="col-md-3 col-form-label">Address</label>
+                    <label for="" class="col-md-3 col-form-label">Address</label>
                     <div class="col-md-9">
                       <p class="form-control-plaintext text-muted">{{$company->address}}</p>
                     </div>
@@ -76,6 +76,3 @@
   </main>
 @endsection
 
-@section('extrascript')
-<script src="{{ asset('js/show.js')}}"></script>
-@endsection

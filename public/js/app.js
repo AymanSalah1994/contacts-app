@@ -7,7 +7,6 @@ if (filterCompany) {
         // This is Just for Browser Compatibility ; 
         window.location.href = window.location.href.split('?')[0] + "?company_id=" + companyId;
     });
-
 }
 
 document.querySelectorAll('.btn-delete').forEach((button) => {
@@ -22,7 +21,6 @@ document.querySelectorAll('.btn-delete').forEach((button) => {
             form.setAttribute('action', action)
             form.submit()
         }
-
     })
 })
 

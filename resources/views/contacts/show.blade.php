@@ -75,7 +75,3 @@
     </div>
   </main>
 @endsection
-
-@section('extrascript')
-<script src="{{ asset('js/show.js')}}"></script>
-@endsection
