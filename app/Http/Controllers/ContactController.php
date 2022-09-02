@@ -20,14 +20,14 @@ class ContactController extends Controller
     {
         $user = auth()->user();
         $companies = Company::userCompanies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
-        $contacts  = Contact::userContacts()->latestFirst()->paginate(5);
+        $contacts  = Contact::userContacts()->with('company')->latestFirst()->paginate(100);
         return view('contacts.index', compact('contacts', 'companies'));
     }
 
     public function create()
     {
         $user = Auth::user();
-        $companies = Company::userCompanies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies','');
+        $companies = Company::userCompanies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
         return view('contacts.create', compact('companies'));
     }
 
