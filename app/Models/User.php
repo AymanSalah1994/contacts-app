@@ -14,33 +14,21 @@ class User extends Authenticatable implements MOSO
 {
     use MustVerifyEmail;
     use HasApiTokens, HasFactory, Notifiable;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    
     protected $fillable = [
         'first_name',
-        'last_name' , 
+        'last_name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -56,7 +44,8 @@ class User extends Authenticatable implements MOSO
         return $this->hasMany(Company::class);
     }
 
-    public function fullName () {
-        return $this->first_name . " " . $this->last_name  ; 
+    public function fullName()
+    {
+        return $this->first_name . " " . $this->last_name;
     }
 }
