@@ -25,7 +25,7 @@ class CompanyController extends Controller
         // $companies = auth()->user()->companies()->latest()->paginate(10) ; 
         // The Above Line is True But it Gives a Red Line Error !!! 
         $user = User::findOrfail(auth()->id());
-        $companies = $user->companies()->latest()->seachCompanies()->paginate(10);
+        $companies = $user->companies()->with('contacts')->latest()->seachCompanies()->paginate(10);
         return view('companies.index', compact('companies'));
     }
 
