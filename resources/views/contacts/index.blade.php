@@ -19,12 +19,7 @@
               @include('contacts._filter')
               <table class="table table-striped table-hover">
                 <thead>
-                  @if ($success_message = session('message'))
-                   <div class="alert alert-success">
-                     {{ $success_message }}
-                  </div>
-                  @endif
-
+                  @include('layouts._message')
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">First Name</th>
