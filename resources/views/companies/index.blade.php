@@ -43,7 +43,7 @@
                         <td>{{ $company->name }}</td>
                         <td>{{ $company->address }}</td>
                         <td>{{ $company->website }}</td>
-                        <td>{{ $company->contacts->count() }}</td>
+                        <td>{{ $company->contacts_count }}</td>
                         <td>{{ $company->email }}</td>
                         {{-- <td>{{ $company->name }}</td> --}}
                         <td>
