@@ -27,7 +27,7 @@
                 <div class="col-md-8">
                   <div class="form-group">
                       <label for="first_name">First Name</label>
-                      <input type="text" name="first_name" id="first_name" class="form-control is-invalid">
+        <input type="text" name="first_name" id="first_name" class="form-control is-invalid" value="{{ old('first_name' , $user->first_name) }}">
                       <div class="invalid-feedback">
                         Please choose a username.
                       </div>
@@ -35,17 +35,17 @@
 
                   <div class="form-group">
                       <label for="last_name">Last Name</label>
-                      <input type="text" name="last_name" id="last_name" class="form-control">
+                      <input type="text" name="last_name" id="last_name" class="form-control" value="{{ old('last_name' , $user->last_name) }}">
                   </div>
 
                   <div class="form-group">
                       <label for="company">Company</label>
-                      <input type="text" name="company" id="company" class="form-control">
+                      <input type="text" name="company" id="company" class="form-control" value="{{ old('company' , $user->company) }}">
                   </div>
 
                   <div class="form-group">
                       <label for="bio">Bio</label>
-                      <textarea name="bio" id="biod" rows="3" class="form-control"></textarea>
+                      <textarea name="bio" id="biod" rows="3" class="form-control">{{ old('bio' , $user->bio) }}</textarea>
                   </div>
                 </div>
                 <div class="offset-md-1 col-md-3">
@@ -53,7 +53,9 @@
                       <label for="bio">Profile picture</label>
                       <div class="fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new img-thumbnail" style="width: 150px; height: 150px;">
-                              <img src="http://via.placeholder.com/150x150"  alt="...">
+                              <img src="https://via.placeholder.com/150x150/ff7f7f/333333?text=Sample
+
+                              "  alt="...">
                           </div>
                           <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 150px; max-height: 150px;"></div>
                           <div class="mt-2">
