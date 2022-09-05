@@ -22,4 +22,18 @@ class ProfileRequest extends FormRequest
             'profile_picture' => 'nullable|mimes:png,jpeg,bmp'
         ];
     }
+
+    public function handleRequest() {
+        $allRequestData = $this->validated();
+        if ($this->hasFile('profile_picture')) {
+            $picture = $this->profile_picture;
+            $pre_fileName = "profile-picture-";
+            $mid_fileName = $this->user()->id;
+            $extension_fileName = $picture->getClientOriginalExtension();
+            $fileName = $pre_fileName . $mid_fileName . "." . $extension_fileName;
+            $picture->move(public_path('uploads'), $fileName);
+            $allRequestData['profile_picture'] = $fileName;
+        }
+        return $allRequestData ; 
+    }
 }

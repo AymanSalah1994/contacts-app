@@ -19,6 +19,7 @@ class User extends Authenticatable implements MOSO
         'last_name',
         'email',
         'password',
+        'profile_picture'
     ];
 
 

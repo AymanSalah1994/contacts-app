@@ -24,7 +24,26 @@ class ProfileController extends Controller
     }
     public function update(ProfileRequest $request)
     {
-        $request->user()->update($request->validated());
+        // $allRequestData = $request->validated();
+        // if ($request->hasFile('profile_picture')) {
+        //     $picture = $request->profile_picture;
+
+        //     // dump($picture->getClientOriginalName());
+        //     // dump($picture->getClientOriginalExtension());
+        //     // dump($picture->getClientSize());
+        //     // It was ClientSize , But Changed in Newer Versions to getSize
+        //     // dump($picture->getSize());
+        //     // dd($picture->getClientMimeType());
+        //     $pre_fileName = "profile-picture-";
+        //     $mid_fileName = $request->user()->id;
+        //     $extension_fileName = $picture->getClientOriginalExtension();
+        //     $fileName = $pre_fileName . $mid_fileName . "." . $extension_fileName;
+        //     $picture->move(public_path('uploads'), $fileName);
+        //     $allRequestData['profile_picture'] = $fileName;
+        // }
+        $allRequestData = $request->handleRequest() ; 
+
+        $request->user()->update($allRequestData);
         return redirect()->route('settings.profile.edit')->with('message', "Account Data Updated SuccessFully!");
     }
 }
