@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Contact as Contact;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Settings\AccountController;
-use App\Http\Controllers\Settings\ProfileController ; 
+use App\Http\Controllers\Settings\ProfileController ;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,8 +29,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 
 
-
-// Route::middleware('auth')->group(function () {}) ; 
+// Route::middleware('auth')->group(function () {}) ;
 Route::get('/settings/account', [AccountController::class, 'index']);
 Route::get('/settings/profile', [ProfileController::class, 'edit'])->name('settings.profile.edit');
 Route::put('/settings/profile', [ProfileController::class, 'update'])->name('settings.profile.update');
