@@ -73,6 +73,7 @@ class ContactController extends Controller
         // dd($request->id);
         // $editedContact = Contact::findOrFail($request->id);
         $contact->update($request->all());
+        // $contact->if(company_id)->where(company_id = 3)->update()
         return redirect()->route('contacts.index')->with('message', 'Contact Edited Successfullyyy');
     }
 
