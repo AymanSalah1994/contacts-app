@@ -13,7 +13,7 @@ class Company extends Model
 
     public function contacts()
     {
-        return $this->hasMany(Contact::class);
+        return $this->hasMany(Contact::class)->withoutGlobalScopes();
     }
 
     public function user()
@@ -28,7 +28,7 @@ class Company extends Model
 
     public function scopeSeachCompanies($query)
     {
-        if ($search = request('search')) {
+        if ($search = request()->query('search')) {
             $query->where('name', 'LIKE', "%{$search}%");
             $query->orWhere('address', 'LIKE', "%{$search}%");
             $query->orWhere('email', 'LIKE', "%{$search}%");

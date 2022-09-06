@@ -20,7 +20,7 @@ class ContactController extends Controller
     {
         $user = auth()->user();
         $companies = Company::userCompanies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
-        $contacts  = Contact::userContacts()->with('company')->latestFirst()->paginate(100);
+        $contacts  = Contact::userContacts()->with('company')->latestFirst()->paginate(10);
         return view('contacts.index', compact('contacts', 'companies'));
     }
 
